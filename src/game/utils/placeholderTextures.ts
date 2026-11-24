@@ -34,5 +34,40 @@ export function createPlaceholderTextures(scene: Scene): void {
         g.clear();
     });
 
+    // Đạn phép 16x16: quầng vàng, lõi trắng
+    g.fillStyle(0xfff59d, 1).fillCircle(8, 8, 7);
+    g.fillStyle(0xffffff, 1).fillCircle(8, 8, 3.5);
+    g.generateTexture('bolt', 16, 16);
+    g.clear();
+
+    // Rìu 32x32: cán nâu, lưỡi xám
+    g.fillStyle(0x8d6e63, 1).fillRect(14, 4, 4, 24);
+    g.fillStyle(0xcfd8dc, 1).fillTriangle(18, 4, 31, 12, 18, 20);
+    g.fillStyle(0xcfd8dc, 1).fillTriangle(14, 4, 1, 12, 14, 20);
+    g.generateTexture('axe', 32, 32);
+    g.clear();
+
+    // Lưỡi quay 28x12: hình thoi
+    g.fillStyle(0xe0f7fa, 1).fillTriangle(0, 6, 14, 0, 28, 6);
+    g.fillStyle(0x80deea, 1).fillTriangle(0, 6, 14, 12, 28, 6);
+    g.generateTexture('blade', 28, 12);
+    g.clear();
+
+    // Vòng sát thương 128x128: nền mờ và viền sáng
+    g.fillStyle(0xffcc66, 0.35).fillCircle(64, 64, 63);
+    g.lineStyle(2, 0xffe08a, 0.9).strokeCircle(64, 64, 62);
+    g.generateTexture('aura', 128, 128);
+    g.clear();
+
+    // Viên kinh nghiệm 12x12: hình thoi xanh
+    g.fillStyle(0x4dd0e1, 1).fillTriangle(6, 0, 12, 6, 6, 12);
+    g.fillStyle(0x80deea, 1).fillTriangle(6, 0, 0, 6, 6, 12);
+    g.generateTexture('gem', 12, 12);
+    g.clear();
+
+    // Hạt nhỏ cho hiệu ứng nổ khi quái chết
+    g.fillStyle(0xffffff, 1).fillCircle(3, 3, 3);
+    g.generateTexture('spark', 6, 6);
+
     g.destroy();
 }

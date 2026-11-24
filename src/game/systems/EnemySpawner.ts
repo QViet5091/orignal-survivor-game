@@ -6,18 +6,30 @@ import type { EnemyId } from '../data/enemies';
 import { SPAWN } from '../data/spawn';
 
 export class EnemySpawner {
+    private scene: Scene;
     private group: GameObjects.Group;
     private elapsedMs = 0;
     private acc = 0;
     private active: Enemy[] = []; // dùng lại mỗi frame để tránh cấp phát mảng mới
 
-    constructor(private scene: Scene) {
+    constructor(scene: Scene) {
+        this.scene = scene;
         // Object pool: quái chết được killAndHide rồi tái sử dụng bằng get()
         this.group = scene.add.group({ classType: Enemy, maxSize: -1 });
     }
 
     get activeCount(): number {
         return this.group.countActive(true);
+    }
+
+    /** Danh sách quái đang hoạt động, được dựng lại ở đầu mỗi lần update(). Phần tử có thể chết giữa chừng, nên luôn kiểm tra e.active. */
+    get activeEnemies(): Enemy[] {
+        return this.active;
+    }
+
+    /** Đưa quái về pool (ẩn và đánh dấu không hoạt động). */
+    kill(enemy: Enemy): void {
+        this.group.killAndHide(enemy);
     }
 
     update(dtMs: number, player: Player, now: number): void {
@@ -40,21 +52,6 @@ export class EnemySpawner {
 
         this.separate(act);
         this.contactPlayer(act, player, now);
-    }
-
-    /** Gây sát thương cho quái trong bán kính (tạm dùng để thử, Giai đoạn 4 thay bằng vũ khí). */
-    damageInRadius(cx: number, cy: number, radius: number, amount: number, now: number): void {
-        const r2 = radius * radius;
-        const list = this.group.getChildren() as Enemy[];
-        for (let i = 0; i < list.length; i++) {
-            const e = list[i];
-            if (!e.active) continue;
-            const dx = e.x - cx;
-            const dy = e.y - cy;
-            if (dx * dx + dy * dy <= r2 && e.takeDamage(amount, now)) {
-                this.group.killAndHide(e);
-            }
-        }
     }
 
     private spawnTick(dtMs: number, player: Player): void {

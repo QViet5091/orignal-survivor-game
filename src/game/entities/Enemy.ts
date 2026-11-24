@@ -11,6 +11,7 @@ export class Enemy extends GameObjects.Sprite {
     damage = 0;
     xp = 0;
     radius = 10;
+    color = 0xffffff; // màu hình, dùng cho hiệu ứng khi chết
     private flashUntil = 0;
 
     constructor(scene: Scene, x: number, y: number, texture: string = 'enemy_slime') {
@@ -27,6 +28,7 @@ export class Enemy extends GameObjects.Sprite {
         this.damage = def.damage;
         this.xp = def.xp;
         this.radius = def.radius;
+        this.color = def.color;
         this.flashUntil = 0;
         this.clearTint();
         this.setActive(true).setVisible(true);
