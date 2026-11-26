@@ -21,7 +21,7 @@ export class LobWeapon extends Weapon {
                 vy: -s.speed,
                 gravity: this.def.gravity ?? 900,
                 spin: 600,
-                damage: s.damage,
+                damage: this.damage,
                 radius: s.radius,
                 pierce: s.pierce,
                 lifetime: s.lifetime,

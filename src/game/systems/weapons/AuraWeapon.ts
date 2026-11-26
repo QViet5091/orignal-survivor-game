@@ -38,7 +38,7 @@ export class AuraWeapon extends Weapon {
             const dy = e.y - player.y;
             const r = s.radius + e.radius;
             if (dx * dx + dy * dy <= r * r) {
-                combat.dealDamage(e, s.damage, now);
+                combat.dealDamage(e, this.damage, now);
             }
         }
     }

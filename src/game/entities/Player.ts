@@ -11,6 +11,9 @@ export class Player extends GameObjects.Sprite {
     hp: number = PLAYER_BASE.maxHp;
     speed: number = PLAYER_BASE.speed;
     radius: number = PLAYER_BASE.radius;
+    damageMult = 1; // nhân vào sát thương vũ khí
+    cooldownMult = 1; // nhân vào thời gian hồi (nhỏ hơn 1 là hồi nhanh hơn)
+    pickupRadius: number = PLAYER_BASE.pickupRadius; // bán kính hút viên XP
     invincible = false; // dùng để debug (phím G)
     private invulnUntil = 0;
     private keys: KeyMap;

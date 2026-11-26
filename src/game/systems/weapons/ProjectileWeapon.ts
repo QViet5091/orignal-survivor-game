@@ -24,7 +24,7 @@ export class ProjectileWeapon extends Weapon {
                 y: player.y,
                 vx: Math.cos(a) * s.speed,
                 vy: Math.sin(a) * s.speed,
-                damage: s.damage,
+                damage: this.damage,
                 radius: s.radius,
                 pierce: s.pierce,
                 lifetime: s.lifetime,

@@ -52,8 +52,8 @@ export class OrbitWeapon extends Weapon {
                 if (dx * dx + dy * dy >= r * r) continue;
 
                 if (now >= (hitTimes.get(e) ?? 0)) {
-                    hitTimes.set(e, now + s.cooldown * 1000);
-                    combat.dealDamage(e, s.damage, now);
+                    hitTimes.set(e, now + s.cooldown * player.cooldownMult * 1000);
+                    combat.dealDamage(e, this.damage, now);
                 }
             }
         }

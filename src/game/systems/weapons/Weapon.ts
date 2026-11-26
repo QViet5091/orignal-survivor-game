@@ -50,8 +50,13 @@ export abstract class Weapon {
         return this.cd <= 0;
     }
 
-    protected resetCooldown(): void {
-        this.cd = this.stats.cooldown;
+        protected resetCooldown(): void {
+        this.cd = this.stats.cooldown * this.ctx.player.cooldownMult;
+    }
+
+    /** Sát thương đã nhân hệ số của người chơi (chỉ số Sức mạnh). */
+    protected get damage(): number {
+        return this.stats.damage * this.ctx.player.damageMult;
     }
 
     abstract update(dtMs: number, now: number): void;
